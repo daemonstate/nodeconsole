@@ -8,11 +8,15 @@ app.get('/', (req, res) => {
   
 });
 app.get('/json',(req,res)=>{
-  if (process.env.MESSAGE_STYLE == 'uppercase'){
-    res.json({"message": "HELLO JSON"});
+  if(process.env.MESSAGE_STYLE==='uppercase'){
+    var response = "Hello json";
+    console.log("yes");
+    response = "Hello json".toUpperCase();
   }else {
-    res.json({"message": "Hello json"});
+    console.log();
+    response = "Hello json";
   }
+res.json({"message": response});
 });
 pathforcss = __dirname+'/public';
 app.use("/public",express.static(pathforcss));
