@@ -6,6 +6,12 @@ app.use((req,res,next)=>{
   console.log(req.method + " " + req.path + " - " + req.ip);
   next();
 })
+app.get('/now', (req,res,next)=>{
+  req.time = new Date().toString();
+  next();
+}, function(req,res){
+  res.send({time: req.time});
+})
 app.get('/', (req, res) => {
   absolutePath = __dirname+"/views/index.html";
   res.sendFile(absolutePath);
