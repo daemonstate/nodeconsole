@@ -28,6 +28,9 @@ app.get('/json',(req,res)=>{
   }
 res.json({"message": response});
 });
+app.get('/:word/echo',(req,res,next)=>{
+  res.send({echo: req.params.word});
+})
 pathforcss = __dirname+'/public';
 app.use("/public",express.static(pathforcss));
 
