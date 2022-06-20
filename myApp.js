@@ -30,6 +30,11 @@ res.json({"message": response});
 });
 app.get('/:word/echo',(req,res,next)=>{
   res.send({echo: req.params.word});
+  next();
+})
+app.get('/name',(req,res,next)=>{
+  res.send({name: req.query.first + " " + req.query.last});
+  next();
 })
 pathforcss = __dirname+'/public';
 app.use("/public",express.static(pathforcss));
