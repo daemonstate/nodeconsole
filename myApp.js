@@ -3,7 +3,6 @@ require('dotenv').config();
 let bodyParser = require('body-parser');
 let app = express();
 console.log("Hello World");
-app.use(bodyParser.urlencoded({extended: false}));
 app.use((req,res,next)=>{
   console.log(req.method + " " + req.path + " - " + req.ip);
   next();
@@ -34,8 +33,10 @@ app.get('/:word/echo',(req,res,next)=>{
   res.send({echo: req.params.word});
   next();
 })
-app.get('/name',(req,res,next)=>{
-  res.send({name: req.query.first + " " + req.query.last});
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.post('/name',function(req,res,next){
+  res.send({name: req.body.first + " " + req.body.last});
   next();
 })
 pathforcss = __dirname+'/public';
